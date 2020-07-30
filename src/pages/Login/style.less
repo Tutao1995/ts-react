@@ -1,0 +1,78 @@
+@import '../../style/less/page_common.less';
+.page-wrapper {
+  .display-flex(center, center);
+  .relative(100%, 100%);
+  min-height: 600px;
+  min-width: 900px;
+  background-color: #e5edff;
+  .page-content {
+      display: flex;
+      .relative(75%, 76.5%);
+      min-width: 1170px;
+      min-height: 660px;
+      background-color: #fff;
+      background-image: linear-gradient(-212deg, #7eadfa 1%, #1f63d8 100%);
+      box-shadow: 0 2px 54px 0 rgba(60, 121, 226, 0.2);
+      border-radius: 30px;
+      &-left {
+        .display-flex(flex-end, flex-end);
+        .relative(62%, 100%);
+        img {
+          height: 90%;
+          width: 90%;
+        }
+      }
+      &-right {
+        .display-flex(center, center);
+        flex-direction: column;
+        .relative(38%, 100%);
+        padding:110px;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+        background-color: #fff;
+        &-header {
+          width: 100%;
+          margin-bottom: 30px;
+          font-family: PingFangSC-Medium;
+          font-size: 24px;
+          font-weight: 600;
+          text-align: center;
+          color: #333333;
+         
+        }
+        #basic {
+          width: 100%;
+          .ant-form-item {
+            position: relative;
+            margin-bottom: 24px;
+            &-explain {
+              position: absolute;
+              top: 30px;
+              left: -40px;
+            }
+          }
+          .ant-form-item:not(.form-item-submit) {
+            border-bottom: 1px solid #eee;
+            .ant-input, .ant-input-affix-wrapper {
+              border: none;
+            }
+          }
+          .ant-form-item-label > label.ant-form-item-required::before {
+            content: ''
+          }
+          .ant-form-item-label > label.ant-form-item-required::after {
+            content: '';
+          }
+          .ant-input:focus, .ant-input-focused, .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused {
+            box-shadow: none;
+          }
+          .form-item-submit {
+            margin-top: 70px;
+            button {
+              width: 100%
+            }
+          }
+        }
+      }
+  }
+}
