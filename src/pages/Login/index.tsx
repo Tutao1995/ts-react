@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { useHistory } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 import { Store } from "antd/lib/form/interface";
 import "./style.less";
@@ -10,22 +11,39 @@ const tailLayout = {
     wrapperCol: { span: 24 },
 };
 
+
 const Login: FC = () => {
+    let history = useHistory();
     const onFinish = (values: Store) => {
         console.log("Success:", values);
+        const { username, password } = values;
+        if (username === password) {
+            history.push("/");
+        }
     };
     const onFinishFailed = (values: Store) => {
-        console.log("Failed:");
+        console.log("Failed:", values);
     };
-
+    const validate = {
+        username: {
+            required: true,
+            message: "请输入用户名",
+        },
+        password: {
+            required: true,
+            message: "请输入密码",
+        }
+    }
     return (
         <div className="page-wrapper">
             <div className="page-content">
                 <div className="page-content-left">
-                    <img src={require('../../images/login.png')} alt=""/>
+                    <img src={require("../../images/login.png")} alt="" />
                 </div>
                 <div className="page-content-right">
-                    <div className="page-content-right-header">网阔数据分析平台</div>
+                    <div className="page-content-right-header">
+                        网阔数据分析平台
+                    </div>
                     <Form
                         {...layout}
                         name="basic"
@@ -36,10 +54,7 @@ const Login: FC = () => {
                             label="账号"
                             name="username"
                             rules={[
-                                {
-                                    required: true,
-                                    message: "请输入用户名",
-                                },
+                                validate.username
                             ]}
                             className="form-item-username"
                         >
@@ -50,10 +65,7 @@ const Login: FC = () => {
                             label="密码"
                             name="password"
                             rules={[
-                                {
-                                    required: true,
-                                    message: "请输入密码",
-                                },
+                                validate.password
                             ]}
                             className="form-item-password"
                         >
@@ -61,7 +73,7 @@ const Login: FC = () => {
                         </Form.Item>
                         <Form.Item {...tailLayout} className="form-item-submit">
                             <Button type="primary" htmlType="submit">
-                                登陆
+                                登录
                             </Button>
                         </Form.Item>
                     </Form>
